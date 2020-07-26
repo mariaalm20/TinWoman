@@ -61,7 +61,9 @@ npm install || yarn
 ## :question: Como utilizar
 
 :red_circle:  Antes de começar, tenha instalado em sua máquina o seguinte:
-- **[Yarn][yarn] !opcional**
+> No projeto foi utilizado o
+[yarn](https://yarnpkg.com/getting-started/install)
+como gerenciador de pacotes,mas pode ser utilizado o npm.
 - **[Git][git]**
 - **[Nodejs][node]**
 
