@@ -61,7 +61,7 @@ npm install || yarn
 ## :question: Como utilizar
 
 :red_circle:  Antes de começar, tenha instalado em sua máquina o seguinte:
-- **[Npm][npm] ou [Yarn][yarn]**
+- **[Yarn][yarn] !opcional**
 - **[Git][git]**
 - **[Nodejs][node]**
 
