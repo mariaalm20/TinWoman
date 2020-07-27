@@ -3,15 +3,9 @@ import { Request, Response } from 'express'
 import generateToken from '../utils/generateToken'
 import User from '../model/User'
 
-
-
-interface IUser extends Request {
-  userId: string
-}
-
 class UserController{
   
-    async create(req: IUser, res: Response) {
+    async create(req: Request, res: Response) {
       
         const { 
           email, 
@@ -44,14 +38,24 @@ class UserController{
       }
 
      async index(req: Request, res: Response) {
-       res.send({ok: true, user: req.userId})
+       //.send({ok: true, user: req.userId})
 
-        /*const { email } = req.headers
+       const { email } = req.headers
 
-        const loggedDev = await User.findById(email)
+       const loggedDev = await User.findById(email)
 
+        const users = await User.find({
+            $and: [
+                { _id: { $ne: email } },
+                { _id: { $nin: loggedDev?.likes } },
+                { _id: { $nin: loggedDev?.dislikes } }
+            ]
+        }).sort({_id: -1})
 
-        return res.json(loggedDev)*/
+        return res.json({
+          user: req.userId,
+          users
+        })
     }
 }
 
