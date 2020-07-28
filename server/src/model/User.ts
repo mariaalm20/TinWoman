@@ -47,7 +47,7 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    deslikes: [{
+    dislikes: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
@@ -58,9 +58,11 @@ const UserSchema = new Schema({
 
 interface PasswordSchema extends Document {
   password: string;
-  likes: string;
+  likes: any;
+  dislikes: any;
   passwordResetToken: string;
   passwordResetExpiress: Date;
+  email: string;
 }
 
 UserSchema.pre<PasswordSchema>('save', async function(next) {
