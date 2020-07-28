@@ -8,7 +8,7 @@ class DislikeController {
       const userLogged = req.userId
       const { userId } = req.params
 
-      const loggedUser = await User.findOne({ _id: userLogged })
+      const loggedUser = await User.findOne({ _id: userLogged }).select('+password')
       const matchUser = await User.findOne({ _id: userId })
 
       if (!matchUser) {

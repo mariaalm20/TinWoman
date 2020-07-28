@@ -9,7 +9,7 @@ class LikeController {
     const userLogged = req.userId
     const { userId } = req.params
 
-    const loggedUser = await User.findOne({ _id: userLogged })
+    const loggedUser = await User.findOne({ _id: userLogged }).select('+password')
     const matchUser = await User.findOne({ _id: userId })
 
     if (!matchUser) {
@@ -18,6 +18,8 @@ class LikeController {
 
 
     loggedUser?.likes.push(matchUser._id)
+
+    await loggedUser?.save()
 
     console.log(`User ${loggedUser?.email} liked ${matchUser._id}`)
 
