@@ -1,12 +1,12 @@
 import {Request, Response, NextFunction} from 'express'
 import jwt from 'jsonwebtoken'
 //import {UserId} from '../utils/userId'
-import authConfig from '../config/auth'
+
+import path from 'path'
+require('dotenv').config({path:path.join(__dirname, '../.env')})
 
 interface Token{
   _id: string;
-  iat: number;
-  exp: number;
 }
 
 interface IUser extends Request {
@@ -24,7 +24,7 @@ export default async (req: IUser, res: Response, next: NextFunction) => {
   
   try {  
 
-    const verify =  jwt.verify(token, authConfig.secret)
+    const verify =  jwt.verify(token, `${process.env.SECRET}`)
       
      const { _id } = verify as Token;
       

@@ -9,29 +9,24 @@ class UserController{
       
         const { 
           email, 
-          password,
           name,
-          bio,
-          age,
-          profession,
-          city,
-          uf
          } = req.body
 
         const userExists = await User.findOne({ email: email })
         
         if (userExists) {
-            return res.status(400).send({error: 'User already exists' })
+            return res.status(400).send(userExists)
         } 
+    
         
-       // const id = generateUnique()
         const user = await User.create(
-          req.body
+          req.body,
         )
      
      console.log(`User ${name} created`)
      return res.json({
        user,
+       avatar: req.file.filename,
        token: generateToken({_id: user._id})
      })
 
@@ -56,6 +51,15 @@ class UserController{
           user: req.userId,
           users
         })
+    }
+
+    async delete (req: Request, res: Response){
+      const _id = req.params
+      
+      await User.findByIdAndDelete(_id)
+
+      return res.status(204).send({message: 'User destroy'})
+
     }
 }
 
