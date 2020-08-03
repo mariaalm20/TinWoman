@@ -3,6 +3,7 @@ declare namespace Express {
       userId: any;
       io: any;
       connectedUsers: any;
+      connectedChat: any;
   }
   export interface Response {
       userId: any;
@@ -11,3 +12,4 @@ declare namespace Express {
 }
 
 declare module 'nodemailer-express-handlebars'
+declare module 'dotenv/config'

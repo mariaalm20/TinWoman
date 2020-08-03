@@ -7,6 +7,9 @@ import UserController from './controllers/UserController'
 import SessionController from './controllers/SessionController'
 import LikeController from './controllers/LikeController'
 import DislikeController from './controllers/DislikeController'
+import ChatController from './controllers/ChatController'
+
+import Chat from './model/Chat'
 
 const upload = multer(multerConfig)
 
@@ -16,6 +19,7 @@ const userController = new UserController()
 const sessionController = new SessionController()
 const likeController = new LikeController()
 const dislikeController = new DislikeController()
+const chatController = new ChatController()
 
 routes.post('/user', upload.single('avatar'), userController.create)
 
@@ -27,6 +31,15 @@ routes.use(authMiddleware)
 routes.get('/user', userController.index)
 routes.post('/user/:userId/likes', likeController.create)
 routes.post('/user/:userId/dislikes', dislikeController.create)
+routes.delete('/user/delete/:_id', userController.delete)
+
+routes.post('/chat/:_id', chatController.create)
+//routes.get('/chats', chatController.index)
+
+routes.get('/chat/userslike', chatController.list)
+routes.get('/chats', chatController.index)
+routes.delete('/chats/:_id', chatController.delete)
+routes.post('/message', chatController.message)
 
 
 

@@ -74,7 +74,7 @@ class SessionController {
     const { email, token, password } = req.body
 
     try {
-      const user = await User.findOne({ email: email }).select('+passwordResetToken passwordResetExpiress')
+      const user = await User.findOne({ email: email }).select('+passwordResetToken +passwordResetExpiress')
 
       if (!user) {
         return res.status(400).send({ error: 'User not found' })

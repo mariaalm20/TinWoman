@@ -1,17 +1,20 @@
-import {Schema, model} from 'mongoose'
-
+import {Schema, model, Document} from 'mongoose'
 
 const ChatSchema = new Schema({
-    senderUser: String,
-    reciever: String,
-    messages: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Message'
-     }
-    ]
+  users: [{
+    type: Schema.Types.Array,
+    ref: 'User'
+  }],
 }, {
     timestamps: true
 })
 
-export default model('Chat', ChatSchema)
+
+interface UserSchema extends Document {
+  _id: {
+    type: string,
+    required: true
+  }
+}
+
+export default model<UserSchema>('Chat', ChatSchema)

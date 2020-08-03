@@ -63,6 +63,10 @@ interface PasswordSchema extends Document {
   passwordResetToken: string;
   passwordResetExpiress: Date;
   email: string;
+  avatar: string;
+  name: string;
+  city: string;
+  uf: string;
 }
 
 UserSchema.pre<PasswordSchema>('save', async function(next) {

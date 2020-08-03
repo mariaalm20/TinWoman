@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import mail from '../config/mail'
 import hbs from 'nodemailer-express-handlebars'
-import path, { extname } from 'path'
+import path from 'path'
 
 
 const transport = nodemailer.createTransport({
