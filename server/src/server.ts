@@ -15,6 +15,7 @@ require('dotenv').config({path:path.join(__dirname, '../.env')})
 
 interface Token{
   _id: string;
+  expire: string
 }
 
 const connectedUsers: any = {};
