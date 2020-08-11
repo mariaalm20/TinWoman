@@ -13,7 +13,11 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const ImageConnection = styled.Image`
-  margin-top: ${wp('12')}
+  margin-top: ${wp('14')};
+`
+
+export const ButtonContainer = styled.View`
+    margin-top: ${wp('16')};
 `
 
 export const Button = styled.TouchableOpacity`
