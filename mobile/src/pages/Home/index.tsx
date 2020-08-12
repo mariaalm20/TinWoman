@@ -6,6 +6,8 @@ import {
   ImageConnection,
   Button,
   ButtonContainer,
+  BackgroundLinear,
+  TextButton
 } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -37,7 +39,9 @@ export default function Home() {
         </Button>
 
         <Button onPress={handleGoToLogin}>
-            <ButtonLinear isBackgroundLinear textButton="Conectar na conta"/>
+            <BackgroundLinear>
+              <TextButton>Conectar na conta</TextButton>
+            </BackgroundLinear>
         </Button>
       </ButtonContainer>
     </Container>

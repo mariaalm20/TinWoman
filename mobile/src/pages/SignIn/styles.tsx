@@ -1,11 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Fontisto from 'react-native-vector-icons/Fontisto'
+import styled, {css} from 'styled-components/native';
+import Feather from 'react-native-vector-icons/Feather';
+import normalize from 'react-native-normalize';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+import {PropsFocus} from './index';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -21,7 +23,7 @@ export const Logo = styled.Image`
 
 export const Title = styled.Text`
   color: #fff;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold;
 
   margin-top: ${wp('16')};
@@ -39,32 +41,23 @@ export const Content = styled.View`
 `;
 
 export const ContainerInput = styled.View`
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
+  align-self: stretch;
+  padding: 20px;
+`;
 
-export const FontistoIcon = styled(Fontisto)`
- padding-right: -90px;
-`
+export const FeatherIcon = styled(Feather)`
+  margin-right: 10px;
+  color: #c4c4c4;
+`;
 
 export const Input = styled.TextInput`
-  width: ${wp('80%')};
   height: ${hp('8')};
-
-  border-radius: 60px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e6e6e6;
-  
-  padding: 20px;
-  margin-top: ${wp('8')};
 `;
 
 export const Button = styled.TouchableOpacity`
-  margin-top: ${wp('8')};
-  width: ${wp('80%')};
-  border-radius: 40px;
+  margin-top: ${wp('6')};
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ForgotPassword = styled.Text`

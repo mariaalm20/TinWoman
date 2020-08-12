@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -7,20 +7,18 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import {PropsButton} from './index';
-
 export const BackgroundLinear = styled(LinearGradient).attrs({
   colors: ['#FF00AB', '#6263FF'],
   start: {x: 0, y: 0},
   end: {x: 1, y: 0},
 })`
-  width: ${wp('60%')};
+  width: ${wp('90%')};
   height: ${hp('8')};
 
   align-items: center;
   justify-content: center;
 
-  border-radius: 50px;
+  border-radius: 16px;
 
 `;
 

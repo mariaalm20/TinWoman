@@ -18,10 +18,9 @@ const Button: React.FC<PropsButton> = ({isBackgroundLinear, textButton, isSmall}
   return (
     <View>
       {isBackgroundLinear ? (
-          <BackgroundLinear className ={isSmall ? 'active' : ''}>
+          <BackgroundLinear>
              <TextButton>{textButton}</TextButton>
-          </BackgroundLinear>
-        
+          </BackgroundLinear> 
       ) : (
         <BorderLinear>
           <ViewGradient>
