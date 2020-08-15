@@ -1,14 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import Fontisto from 'react-native-vector-icons/Fontisto'
+import styled from 'styled-components/native';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
-import {useWindowDimensions} from 'react-native'
-
 
 
 export const Content = styled.View`
@@ -21,33 +18,15 @@ export const Content = styled.View`
   justify-content: center;
 `;
 
-
-export const FontistoIcon = styled(Fontisto)`
- padding-right: -90px;
-`
-
-export const Input = styled.TextInput`
-  width: ${wp('80%')};
-  height: ${hp('8')};
-
-  border-radius: 60px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e6e6e6;
-  
-  padding: 20px;
-  margin-top: ${wp('4')};
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
-
-export const Button = styled.TouchableOpacity`
-`;
-
 
 export const ContainerButton = styled.View`
-    margin-bottom: ${wp('10')};
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-`
-
-
+  margin-bottom: ${wp('6')};
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+`;

@@ -34,11 +34,11 @@ export default function Home() {
       <ImageConnection source={connectionImage} />
 
       <ButtonContainer>
-        <Button onPress={handletoSignUp}>
+        <Button onPress={() => handletoSignUp()}>
            <ButtonLinear textButton="Criar uma conta"/>
         </Button>
 
-        <Button onPress={handleGoToLogin}>
+        <Button onPress={() => handleGoToLogin()}>
             <BackgroundLinear>
               <TextButton>Conectar na conta</TextButton>
             </BackgroundLinear>

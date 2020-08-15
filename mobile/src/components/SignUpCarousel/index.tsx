@@ -1,39 +1,57 @@
 
-
 import React, {useRef, useState} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
   View,
   Animated,
-  FlatList,
   useWindowDimensions,
+  TouchableOpacity,
+  
 } from 'react-native';
+
+import AsyncStorage from '@react-native-community/async-storage'
+
+import { useNavigation } from "@react-navigation/native";
 
 import FirstPage from '../SignUpPages/FirstPage';
 import SecondPage from '../SignUpPages/SecondPage';
+import PicturePage from '../SignUpPages/PicturePage';
 import LastPage from '../SignUpPages/LastPage';
 
 import ButtonGradient from '../Button';
 
-import {Button, Content, ContainerButton} from './styles';
+import {Content, ContainerButton, Container} from './styles';
 
+import api from '../../services/api'
 
 const SignUpCarousel = () => {
+  const navigation = useNavigation()
   const [flatListRef, setFlatListRef] = useState(null);
   const [index, setIndex] = useState(0);
   const [lista, setLista] = useState([
     {input: ''},
     {input: ''},
     {input: ''},
+    {input: ''},
   ]);
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  const {width: windowWidth} = useWindowDimensions();
+  const {width: windowWidth} = useWindowDimensions()
+
+ async function handleSignUp(){
+  
+   const userStorage =  await AsyncStorage.getItem('user')
+   const userSecond = await AsyncStorage.getItem('second')
+   console.log(userStorage, userSecond)
+
+    await api.post("/user", userStorage);
+ 
+    navigation.navigate("SignIn");
+  
+}
 
   return (
     <Content>
-      <SafeAreaView style={styles.container}>
+      <Container>
         <Animated.FlatList
           ref={(thisFlatList) => setFlatListRef(thisFlatList)}
           data={lista}
@@ -66,31 +84,23 @@ const SignUpCarousel = () => {
                    <SecondPage />
                  </View>
                 ) : (
+                  index === 2 ? (
+                   <View>
+                     <PicturePage />
+                   </View>
+                  ) : (
                   <View>
                    <LastPage />
                  </View>
                 )
-              )}
+              ))}
             </View>
           )}
         />
 
         <ContainerButton>
-          {/*index > 0 && (
-            <Button
-              onPress={() => {
-                if (index > 0) {
-                  let newIndex = index - 1;
-                  setIndex(newIndex);
-                  flatListRef.scrollToIndex({animated: true, index: newIndex});
-                }
-              }}
-              >
-                <ButtonGradient isBackgroundLinear textButton="Voltar" isSmall/>
-            </Button>
-            )*/}
-
-          <Button
+          { index <= 2 ? (
+            <TouchableOpacity
             onPress={() => {
               if (index < lista.length - 1) {
                 let newIndex = index + 1;
@@ -98,24 +108,19 @@ const SignUpCarousel = () => {
                 flatListRef.scrollToIndex({animated: true, index: newIndex});
               }
             }}>
-            {index < 2 ? (
-                <ButtonGradient isBackgroundLinear textButton="Próximo" isSmall/>
-            ) : (
-                <ButtonGradient isBackgroundLinear textButton="Finalizar" isSmall/>
-            )}
-          </Button>
+               <ButtonGradient isBackgroundLinear textButton="Próximo" isSmall/>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={handleSignUp}>
+              <ButtonGradient isBackgroundLinear textButton="Finalizar" isSmall/>
+            </TouchableOpacity>
+          )}
+          
         </ContainerButton>
-      </SafeAreaView>
+      </Container>
     </Content>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});
 
 export default SignUpCarousel;

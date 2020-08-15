@@ -19,8 +19,7 @@ export const BackgroundLinear = styled(LinearGradient).attrs({
   justify-content: center;
 
   border-radius: 16px;
-
-`;
+  `;
 
 export const TextButton = styled.Text`
   font: 700 21px Ubuntu;

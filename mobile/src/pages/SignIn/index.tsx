@@ -146,7 +146,7 @@ const SignIn: React.FC<PropsFocus> = ({isFocused}) => {
           <ForgotPassword>Esqueci a Senha</ForgotPassword>
         </Content>
       </Container>
-      <Toast ref={toastRef} style={{backgroundColor: 'red'}} />
+      <Toast ref={toastRef} /*style={{backgroundColor: 'red'}}*/ />
     </KeyboardAvoidingView>
   );
 };

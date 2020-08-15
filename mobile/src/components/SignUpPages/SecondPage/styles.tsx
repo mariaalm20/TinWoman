@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import {
@@ -10,62 +10,48 @@ import {
 import {PropsGroup} from './index';
 
 export const ContainerInput = styled.View`
-  height: ${hp('50%')};
-  width: ${wp('100%')};
-  border-top-right-radius: 120px;
-  align-items: center;
+  align-self: stretch;
+  padding: 20px;
 `;
 
 export const InputGroup = styled.View`
-  flex: 1;
   flex-direction: row;
-  justify-content: space-evenly;
 `;
+
+export const Button = styled.TouchableOpacity`
+  margin-top: ${wp('16')};
+  justify-content: center;
+  align-items: center;
+`;
+
 
 export const ContentSelect = styled.View`
-  border-radius: 60px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e6e6e6;
-
   height: ${hp('8')};
   margin-top: ${wp('4')};
-
-  align-items: center;
-  justify-content:center;
-
-  margin-left: 10px;
+  border-color: #000;
+  border-style: solid;
+  border-bottom-width: 10px;
 `
 
-export const Icon = styled(FeatherIcon)`
-  margin-right: 10px;
-  color: #c4c4c4;
-`;
-
-export const Input = styled.TextInput`
-  width: ${(props: PropsGroup) => (props.isGroup ? '40%' : '80%')};
-
-  height: ${hp('8')};
-`;
-
 export const ContentInput = styled.View`
-  width: ${wp('80%')};
-  height: ${hp('8')};
-
-  border-radius: 60px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e6e6e6;
-
-  margin-top: ${wp('6')};
-
-  padding: 20px;
-  flex-direction: row;
-  align-items: center;
+  height: 60px;
+  background-color: #FFF;
+  border-radius: 10px;
+  margin-bottom: 8px;
 `;
 
 export const Select = styled.Picker`
   width: ${wp('38%')};
   height: ${hp('8')};
+  color: grey;
   margin-left: 10px;
+  border-color: #c4c4c4;
+  border-style: solid;
+  border-bottom-width: 20px;
+`
+export const Label = styled.Text`
+  margin-left: ${wp('3')};
+  font-size: 16px;
+  font-weight: bold;
+  color: #999;
 `
