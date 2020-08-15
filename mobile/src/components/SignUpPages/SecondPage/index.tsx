@@ -44,7 +44,7 @@ const SignInValidationSchema = Yup.object().shape({
   profession: Yup.string().required('Campo obrigatório!'),
 });
 
-const SecondPage: React.FC<PropsGroup> = ({isGroup}) => {
+const SecondPage: React.FC<PropsGroup> = (props) => {
   const inputAgeRef = useRef<Input>(null);
   const inputProfessionRef = useRef<Input>(null);
 
@@ -53,13 +53,13 @@ const SecondPage: React.FC<PropsGroup> = ({isGroup}) => {
 
   const [age, setAge] = useState('')
   const [profession, setProfession] = useState('')
- 
+
 
   const [ufs, setUfs] = useState<string[]>([]);
   const [selectedUf, setSelectedUf] = useState('0')
 
 
-  const [user, setUser] = useState<SignUp[]>([]);
+  // const [user, setUser] = useState<SignUp[]>([]);
 
 
   useEffect(() => {
@@ -99,16 +99,17 @@ const SecondPage: React.FC<PropsGroup> = ({isGroup}) => {
       });
   }, [selectedUf, ufs])
 
-  
+
   async function handleSignUp() {
     const informations = [{age, profession, selectedCity, selectedUf}]
-    setUser(informations)
-    console.log(user)
+    // setUser(informations)
+    console.log(props.user)
 
-    await AsyncStorage.setItem("usersecond", JSON.stringify(user))
+    await AsyncStorage.setItem("usersecond", JSON.stringify(props.user))
   }
 
   useEffect(() => {
+    console.log(props.user)
     handleSignUp()
   }, [selectedCity])
 
@@ -150,7 +151,7 @@ const SecondPage: React.FC<PropsGroup> = ({isGroup}) => {
               value={profession}
               onChangeText={(text: string) => setProfession(text)}
             />
-         
+
 
             <InputGroup>
 

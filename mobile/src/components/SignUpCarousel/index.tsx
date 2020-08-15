@@ -1,11 +1,10 @@
-
 import React, {useRef, useState} from 'react';
 import {
   View,
   Animated,
   useWindowDimensions,
   TouchableOpacity,
-  
+
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage'
@@ -27,6 +26,10 @@ const SignUpCarousel = () => {
   const navigation = useNavigation()
   const [flatListRef, setFlatListRef] = useState(null);
   const [index, setIndex] = useState(0);
+  const [user, setUser] = useState({
+    passo1: {nome: '', email: '', pass: ''},
+    passo2: {idade: 0, profissao: ''},
+  })
   const [lista, setLista] = useState([
     {input: ''},
     {input: ''},
@@ -38,17 +41,18 @@ const SignUpCarousel = () => {
   const {width: windowWidth} = useWindowDimensions()
 
  async function handleSignUp(){
-  
+
    const userStorage =  await AsyncStorage.getItem('user')
    const userSecond = await AsyncStorage.getItem('second')
    console.log(userStorage, userSecond)
 
     await api.post("/user", userStorage);
- 
+
     navigation.navigate("SignIn");
-  
+
 }
 
+  // @ts-ignore
   return (
     <Content>
       <Container>
@@ -76,12 +80,12 @@ const SignUpCarousel = () => {
             <View style={{width: windowWidth, height: 250}} key={item.input}>
               {index  === 0 ? (
                 <View>
-                  <FirstPage />
+                  <FirstPage user={user} updateUser={(value) => setUser({...user, passo1: value})} />
                </View>
               ) : (
                 index === 1 ? (
                  <View>
-                   <SecondPage />
+                   <SecondPage user={user} updateuser={(value) => setUser({...user, passo2: value})} />
                  </View>
                 ) : (
                   index === 2 ? (
@@ -115,7 +119,7 @@ const SignUpCarousel = () => {
               <ButtonGradient isBackgroundLinear textButton="Finalizar" isSmall/>
             </TouchableOpacity>
           )}
-          
+
         </ContainerButton>
       </Container>
     </Content>
