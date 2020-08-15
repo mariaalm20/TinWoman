@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import {
   Image,
@@ -36,11 +37,13 @@ export default function SignUp() {
       <Container
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{flex: 1}}>
-        <Logo source={logo} />
+        <ScrollView>
+          <Logo source={logo} />
 
-        <Title>Criar uma conta</Title>
+          <Title>Criar uma conta</Title>
 
-        <Carousel />
+          <Carousel />
+        </ScrollView>
       </Container>
     </KeyboardAvoidingView>
   );
