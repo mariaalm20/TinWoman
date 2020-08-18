@@ -36,11 +36,11 @@ export default function SignUp() {
       <Container
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{flex: 1}}>
-        <Logo source={logo} />
+          <Logo source={logo} />
 
-        <Title>Criar uma conta</Title>
+          <Title>Criar uma conta</Title>
 
-        <Carousel />
+          <Carousel />
       </Container>
     </KeyboardAvoidingView>
   );

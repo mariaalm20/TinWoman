@@ -18,26 +18,30 @@ import ButtonGradient from '../../Button';
 
 
 interface RootState {
-    name: string;
-    email: string;
-    password: string;
+      name: string;
+      email: string;
+      password: string;
 }
 
 
 type TUserListProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 
+interface Props{
+  user: RootState;
+  updateUser: any;
+}
 
-const FirstPage: React.FC<TUserListProps>= ({user}) => {
+const FirstPage: React.FC<Props> = ({user, updateUser}) => {
 
    const inputNameRef = useRef<Input>()
    const inputEmailRef = useRef<Input>()
    const inputPasswordRef = useRef<Input>()
 
   //const [user, setUser] = useState<SignUpFirst[]>([]);
-  
+
   async function handleSignUp() {
-    
+
   }
 
   useEffect(() => {
@@ -63,7 +67,7 @@ const FirstPage: React.FC<TUserListProps>= ({user}) => {
               ref={inputNameRef}
               onSubmitEditing={() => inputEmailRef.current?.focus()}
               value={user.name}
-              //onChangeText={(text: string) => setName(text)}
+              onChangeText={(text: string) => updateUser({...user, name: text})}
             />
 
             <Input
@@ -83,7 +87,7 @@ const FirstPage: React.FC<TUserListProps>= ({user}) => {
               ref={inputEmailRef}
               onSubmitEditing={() => inputPasswordRef.current?.focus()}
               value={user.email}
-              //onChangeText={(text: string) => setEmail(text)}
+              onChangeText={(text: string) => updateUser({...user, email: text})}
             />
 
             <Input
@@ -101,7 +105,7 @@ const FirstPage: React.FC<TUserListProps>= ({user}) => {
               errorStyle={{color: '#FB0404', fontSize: normalize(14)}}
               ref={inputPasswordRef}
               value={user.password}
-              //onChangeText={(text: string) => setPassword(text)}
+              onChangeText={(text: string) => updateUser({...user, password: text})}
             />
           </View>
     </ContainerInput>
@@ -112,7 +116,6 @@ const FirstPage: React.FC<TUserListProps>= ({user}) => {
 const mapStateToProps = (state: RootState) => ({
   user: state
 })
-
 
 const mapDispatchToProps = (dispatch: Dispatch) => (bindActionCreators(actions, dispatch))
 

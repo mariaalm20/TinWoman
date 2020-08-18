@@ -5,7 +5,6 @@ import {
   Animated,
   useWindowDimensions,
   TouchableOpacity,
-  
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage'
@@ -23,10 +22,19 @@ import {Content, ContainerButton, Container} from './styles';
 
 import api from '../../services/api'
 
+interface Props {
+  passo1: {name: string, email: string, password: string},
+  passo2: {age: string; profession: string, city: string, uf: string}
+}
+
 const SignUpCarousel = () => {
   const navigation = useNavigation()
   const [flatListRef, setFlatListRef] = useState(null);
   const [index, setIndex] = useState(0);
+  const [user, setUser] = useState({
+    passo1: {name: '', email: '', password: ''},
+    passo2: {age: '', profession: '', city: '', uf: ''},
+  })
   const [lista, setLista] = useState([
     {input: ''},
     {input: ''},
@@ -38,17 +46,18 @@ const SignUpCarousel = () => {
   const {width: windowWidth} = useWindowDimensions()
 
  async function handleSignUp(){
-  
+
    const userStorage =  await AsyncStorage.getItem('user')
    const userSecond = await AsyncStorage.getItem('second')
    console.log(userStorage, userSecond)
 
     await api.post("/user", userStorage);
- 
+
     navigation.navigate("SignIn");
-  
+
 }
 
+  // @ts-ignore
   return (
     <Content>
       <Container>
@@ -75,13 +84,15 @@ const SignUpCarousel = () => {
           renderItem={({item}) => (
             <View style={{width: windowWidth, height: 250}} key={item.input}>
               {index  === 0 ? (
+                //@ts-ignore
                 <View>
-                  <FirstPage />
+                  <FirstPage user={user} updateUser={(value: any) => setUser({...user, passo1: value})} />
                </View>
               ) : (
                 index === 1 ? (
+                  //@ts-ignore
                  <View>
-                   <SecondPage />
+                   <SecondPage user={user} updateuser={(value: any) => setUser({...user, passo2: value})} />
                  </View>
                 ) : (
                   index === 2 ? (
@@ -115,7 +126,7 @@ const SignUpCarousel = () => {
               <ButtonGradient isBackgroundLinear textButton="Finalizar" isSmall/>
             </TouchableOpacity>
           )}
-          
+
         </ContainerButton>
       </Container>
     </Content>
