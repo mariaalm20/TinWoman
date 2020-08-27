@@ -68,7 +68,7 @@ const SignIn: React.FC<PropsFocus> = ({isFocused}) => {
       <Container>
         <Logo source={logo} />
 
-        <Title>Conectar na conta</Title>
+        <Title>Conectar</Title>
 
         <Content>
           <ContainerInput>

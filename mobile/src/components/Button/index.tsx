@@ -11,16 +11,32 @@ import {View} from 'react-native';
 export interface PropsButton {
   isBackgroundLinear?: boolean;
   textButton: string;
-  isSmall?:boolean
+  isSmall?: boolean;
+  width?: string;
+  height?: string;
+  fontSize?: number;
+  borderRadius?: number;
 }
 
-const Button: React.FC<PropsButton> = ({isBackgroundLinear, textButton, isSmall}) => {
+import {RectButton} from 'react-native-gesture-handler';
+
+const Button: React.FC<PropsButton> = ({
+  isBackgroundLinear,
+  textButton,
+  fontSize,
+  width,
+  height,
+  borderRadius,
+}) => {
   return (
     <View>
       {isBackgroundLinear ? (
-          <BackgroundLinear>
-             <TextButton>{textButton}</TextButton>
-          </BackgroundLinear> 
+        <BackgroundLinear
+          width={width}
+          height={height}
+          borderRadius={borderRadius}>
+          <TextButton fontSize={fontSize}>{textButton}</TextButton>
+        </BackgroundLinear>
       ) : (
         <BorderLinear>
           <ViewGradient>

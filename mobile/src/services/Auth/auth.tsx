@@ -43,10 +43,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       email,
       password,
     });
-  
 
-    const userData = response.data.userExists //dados do usuario sem o token
+    const userData = response.data.userExists 
     console.log(userData)
+    
     if (userData) {
       setUser(userData);
       console.log(user)

@@ -7,22 +7,25 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
+import {PropsButton} from './index'
+
 export const BackgroundLinear = styled(LinearGradient).attrs({
   colors: ['#FF00AB', '#6263FF'],
   start: {x: 0, y: 0},
   end: {x: 1, y: 0},
-})`
-  width: ${wp('90%')};
-  height: ${hp('8')};
+})<PropsButton>`
+  width: ${props => props.width ? props.width : `${wp('90%')}`};
+  height: ${props => props.height ? props.height : `${hp('8')}`};
 
   align-items: center;
   justify-content: center;
 
-  border-radius: 16px;
+  border-radius: ${props => props.borderRadius ? props.borderRadius : 16};
   `;
 
-export const TextButton = styled.Text`
-  font: 700 21px Ubuntu;
+export const TextButton = styled.Text<PropsButton>`
+  font-size: ${props => props.fontSize ? props.fontSize : 24};
+  font-weight: bold;
   color: #ffff;
 `;
 

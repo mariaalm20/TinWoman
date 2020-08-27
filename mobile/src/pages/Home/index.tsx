@@ -1,31 +1,28 @@
 import React from 'react';
 import {Image} from 'react-native';
 
-import {
-  Container,
-  ImageConnection,
-  Button,
-  ButtonContainer,
-  BackgroundLinear,
-  TextButton
-} from './styles';
+import {Container, ImageConnection, Button, ButtonContainer} from './styles';
 
 import logo from '../../assets/logo.png';
 import connectionImage from '../../assets/connection.png';
 
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
 
-import ButtonLinear from '../../components/Button'
+import ButtonLinear from '../../components/Button';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export default function Home() {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  function handleGoToLogin(){
-    navigation.navigate('SignIn')
+  function handleGoToLogin() {
+    navigation.navigate('SignIn');
   }
 
-  function handletoSignUp(){
-    navigation.navigate('SignUp')
+  function handletoSignUp() {
+    navigation.navigate('SignUp');
   }
 
   return (
@@ -35,13 +32,17 @@ export default function Home() {
 
       <ButtonContainer>
         <Button onPress={() => handletoSignUp()}>
-           <ButtonLinear textButton="Criar uma conta"/>
+          <ButtonLinear textButton="Criar uma conta" />
         </Button>
 
         <Button onPress={() => handleGoToLogin()}>
-            <BackgroundLinear>
-              <TextButton>Conectar na conta</TextButton>
-            </BackgroundLinear>
+          <ButtonLinear
+            isBackgroundLinear
+            textButton="Conectar"
+            width={`${wp('80%')}`}
+            height={`${hp('9')}`}
+            borderRadius={90}
+          />
         </Button>
       </ButtonContainer>
     </Container>
