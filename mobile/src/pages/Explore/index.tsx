@@ -1,98 +1,90 @@
-import React from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {ReactNode, useRef, useState} from 'react';
+import {View, Text, Animated} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
+import PulseLoader from 'react-native-pulse-loader'
 
 import Feather from 'react-native-vector-icons/Feather';
-import {
-  Container,
-  Content,
-  HeaderLinear,
-  ContainerInfo,
-  Avatar,
-  ContainerPicture,
-  ViewGradient,
-  Name,
-  Profession,
-  Address,
-  Age,
-  ContainerGroup,
-  Description,
-  Separator,
-  ButtonAction,
-  ButtonLike,
-  ButtonDislike,
-} from './styles';
+import {Container, ButtonAction, ButtonDislike, ButtonLike} from './styles';
 
 import pessoa from '../../assets/match.png';
-import separator from '../../assets/Separator.png'
-
+import separator from '../../assets/Separator.png';
 
 import {RectButton} from 'react-native-gesture-handler';
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import CardStack, {Card} from 'react-native-card-stack-swiper';
+import Swiper from 'react-native-deck-swiper';
 
 import Button from '../../components/Button';
+import CardItem from '../../components/Card';
 
-const Explore = () => {
-  const navigation = useNavigation();
+import datausers from '../../assets/staticUsers/user';
 
-  function handleNavigateDetails() {
-    navigation.navigate('Details');
+interface PropsExplore {
+  swiperFunction: ReactNode;
+}
+
+const Explore: React.FC<PropsExplore> = ({swiperFunction}) => {
+  const [quantidadeUsers, setQuantidades] = useState(datausers.length)
+
+  const useSwiper = useRef(null).current;
+
+ function handleOnSwipedLeft() {
+    //console.log(quantidadeUsers)
+    const initial = quantidadeUsers - 1
+    setQuantidades(initial)
+    console.log(initial)
   }
+
+  function handleOnSwipedLRight() {
+    // useSwiper.swipeRight()
+    const initial = quantidadeUsers - 1
+    setQuantidades(initial)
+    console.log(initial)
+  }
+
+  const scrollX = useRef(new Animated.Value(0)).current;
 
   return (
     <Container>
-      <Content>
-        <HeaderLinear>
-          <Text></Text>
-        </HeaderLinear>
 
-        <ContainerInfo>
-          <ContainerPicture>
-            <ViewGradient>
-              <Avatar source={pessoa} />
-            </ViewGradient>
-          </ContainerPicture>
-
-          <Name>Ana</Name>
-          <Profession>UI/UX Designer</Profession>
-
-          <ContainerGroup>
-            <Age>21 /</Age>
-            <Address>Maringá-PR</Address>
-          </ContainerGroup>
-
-          <Separator source={separator} />
-
-          <Description>
-            Apaixonada por UI/UX designer! Dê like e vamos trocar
-            experiências...
-          </Description>
-
-          <RectButton onPress={handleNavigateDetails}>
-            <Button
-              isBackgroundLinear
-              textButton="Detalhes"
-              width={`${wp('35')}`}
-              height={`${hp('4')}`}
-              fontSize={15}
+      <CardStack
+        verticalSwipe={false}
+        ref={useSwiper}
+        renderNoMoreCards={() => (
+          <View style={{alignItems: "center"}}>
+            <Text style={{color: "#fff", fontSize:20}}>Que pena, acabou :(</Text>
+          </View>
+        )}
+        onSwiped={() => console.log('onSwipped')}
+        onSwipedLeft={handleOnSwipedLeft}
+        onSwipedRight={handleOnSwipedLRight}
+        >
+        {datausers.map((item, index) => (
+          <Card key={index} style={{zIndex: datausers.length - index} }>
+            <CardItem
+              avatar={item.avatar}
+              name={item.name}
+              city={item.city}
+              uf={item.uf}
+              profession={item.profession}
+              age={item.age}
+              description={item.description}
             />
-          </RectButton>
-        </ContainerInfo>
-      </Content>
+          </Card>
+        ))}
+      </CardStack>
 
-      <ButtonAction>
-        <ButtonDislike>
-          <Feather name="x" size={32} color="#FF00AB" />
-        </ButtonDislike>
-        <ButtonLike>
-          <Feather name="heart" size={32} color="#6263FF" />
-        </ButtonLike>
-      </ButtonAction>
+
+      {quantidadeUsers > 0 && (
+        <ButtonAction>
+          <ButtonDislike onPress={() => {handleOnSwipedLeft}}>
+            <Feather name="x" size={32} color="#FF00AB" />
+          </ButtonDislike>
+          <ButtonLike onPress={handleOnSwipedLRight}>
+            <Feather name="heart" size={32} color="#6263FF" />
+          </ButtonLike>
+        </ButtonAction>
+      )}
     </Container>
   );
 };

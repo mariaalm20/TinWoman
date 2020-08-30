@@ -15,7 +15,6 @@ import Details from '../pages/Details'
 
 import logoChat from '../assets/logoChat.png';
 import pessoa from '../assets/pessoas.png';
-import LinearGradient from 'react-native-linear-gradient';
 
 
 const AppStack = createStackNavigator();

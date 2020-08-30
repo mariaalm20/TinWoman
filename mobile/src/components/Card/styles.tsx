@@ -10,11 +10,6 @@ import {
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.SafeAreaView`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  background-color: #3f3d56;
-  padding: 20px;
 `;
 
 export const Content = styled.View`
