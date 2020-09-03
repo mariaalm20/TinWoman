@@ -1,15 +1,13 @@
-import React from 'react'
-import { useAuth } from "../services/Auth/auth";
+import React from 'react';
+import {useAuth} from '../services/Auth/auth';
 
-
-import AppRoutes from './app'
-import AuthRoutes from './auth'
-
+import AppRoutes from './app';
+import AuthRoutes from './auth';
 
 const Routes = () => {
-  const {signed} = useAuth()
+  const {signed} = useAuth();
 
-  return signed ? <AppRoutes />: <AuthRoutes />
-}
+  return signed ? <AppRoutes /> : <AuthRoutes />;
+};
 
-export default Routes
+export default Routes;

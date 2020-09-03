@@ -1,6 +1,4 @@
-import styled, {css} from 'styled-components/native';
-import Feather from 'react-native-vector-icons/Feather';
-import normalize from 'react-native-normalize';
+import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {
@@ -8,6 +6,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {RectButton} from 'react-native-gesture-handler';
+
+import {Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('screen');
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -30,7 +31,7 @@ export const HeaderLinear = styled(LinearGradient).attrs({
 })`
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-  height: ${hp(4)};
+  height: ${height * 0.04};
 `;
 
 export const Separator = styled.Image`
@@ -44,8 +45,8 @@ export const ContainerInfo = styled.View`
 `;
 
 export const Avatar = styled.Image`
-  width: ${wp('34')};
-  height: ${hp('17')};
+  width: ${width * 0.34};
+  height: ${height * 0.17};
   border-radius: 100px;
 `;
 
@@ -56,8 +57,8 @@ export const ContainerPicture = styled(LinearGradient).attrs({
 })`
   border-radius: 100px;
 
-  width: ${wp('40')};
-  height: ${hp('20')};
+  width: ${width * 0.4};
+  height: ${height * 0.19};
 
   align-items: center;
   justify-content: center;
@@ -121,7 +122,7 @@ export const ButtonInsta = styled(RectButton)`
   margin-right: 16px;
 `;
 
-export const IconSocial =  styled.Image`
+export const IconSocial = styled.Image`
   width: 40px;
   height: 40px;
-`
+`;

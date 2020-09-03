@@ -1,13 +1,8 @@
-import styled, { css } from 'styled-components/native';
-import Feather from 'react-native-vector-icons/Feather';
-import normalize from 'react-native-normalize';
-import LinearGradient from 'react-native-linear-gradient';
+import styled from 'styled-components/native';
+import {RectButton} from 'react-native-gesture-handler';
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import { RectButton } from 'react-native-gesture-handler';
+import {Dimensions} from 'react-native';
+const {height} = Dimensions.get('screen');
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -18,32 +13,32 @@ export const Container = styled.SafeAreaView`
 
 export const ButtonAction = styled.View`
   flex-direction: row;
-  margin-top: 440px;
+  margin-top: ${height * 0.52};
   align-items: center;
   justify-content: center;
-`
+`;
 export const ButtonLike = styled(RectButton)`
- border-radius: 60px;
- background-color: #2f2e41;
- width: ${wp('24')};
- height: ${hp('12')};
- margin-top: 20px;
+  background-color: #2f2e41;
+  width: 104px;
+  height: 104px;
+  margin-top: 48px;
+  border-radius: 52px;
 
- align-items: center;
- justify-content: center;
+  align-items: center;
+  justify-content: center;
 
- margin-left: 50px;
- elevation: 10;
-`
+  margin-left: 50px;
+  elevation: 10;
+`;
 export const ButtonDislike = styled(RectButton)`
-  border-radius: 60px;
- background-color: #2f2e41;
- width: ${wp('24')};
- height: ${hp('12')};
- margin-top: 20px;
- padding:30px;
- elevation: 10;
+  background-color: #2f2e41;
+  width: 104px;
+  height: 104px;
+  margin-top: 48px;
+  padding: 30px;
+  elevation: 10;
+  border-radius: 52px;
 
- align-items: center;
- justify-content: center;
-`
+  align-items: center;
+  justify-content: center;
+`;

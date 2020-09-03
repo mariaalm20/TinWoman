@@ -49,7 +49,7 @@ class UserController{
 
         return res.json({
           user: req.userId,
-          users
+          users,
         })
     }
 

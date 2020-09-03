@@ -29,8 +29,8 @@ export interface Props {
   selected: boolean;
 }
 
-const SelectProfession: React.FC<Props> = ({selected}) => {
-  const [index, setIndex] = useState(0);
+const SelectProfession: React.FC<Props> = () => {
+  // const [index, setIndex] = useState(0);
   const [profession, setProfession] = useState([
     {id: 0, name: 'Administração'},
     {id: 2, name: 'Doc Hudson'},
@@ -88,7 +88,7 @@ const SelectProfession: React.FC<Props> = ({selected}) => {
                       selectedItems.includes(item.id) ? styles.selectedItem : {}
                     }>
                     <HeaderLinear>
-                      <Text></Text>
+                      <Text />
                     </HeaderLinear>
 
                     <ContainerInfo>

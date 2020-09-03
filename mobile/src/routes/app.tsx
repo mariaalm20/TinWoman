@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import normalize from 'react-native-normalize';
 import {Image} from 'react-native';
 
@@ -6,16 +6,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import Feather from 'react-native-vector-icons/Feather'
+import Feather from 'react-native-vector-icons/Feather';
 import {RectButton} from 'react-native-gesture-handler';
 
 import SelectProfession from '../pages/SelectProfession';
-import Explore from '../pages/Explore'
-import Details from '../pages/Details'
+import Explore from '../pages/Explore';
+import Details from '../pages/Details';
 
 import logoChat from '../assets/logoChat.png';
 import pessoa from '../assets/pessoas.png';
-
 
 const AppStack = createStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -31,7 +30,7 @@ const Tab = () => {
           backgroundColor: '#2F2E41',
           height: normalize(50),
           paddingTop: 5,
-          paddingBottom: 5
+          paddingBottom: 5,
         },
       }}>
       <Bottom.Screen
@@ -41,7 +40,7 @@ const Tab = () => {
           tabBarLabel: 'Profissões',
           tabBarIcon: ({color}) => (
             <Feather name="briefcase" size={24} color={color} />
-          )
+          ),
         }}
       />
       <Bottom.Screen
@@ -51,7 +50,7 @@ const Tab = () => {
           tabBarLabel: 'Explorar',
           tabBarIcon: ({color}) => (
             <Feather name="copy" size={24} color={color} />
-          )
+          ),
         }}
       />
     </Bottom.Navigator>
@@ -90,23 +89,20 @@ const AppRoutes = () => {
             </RectButton>
           ),
         }}>
-        <AppStack.Screen 
-           name="App" 
-           options={
-             {
-               title: ``
-             }
-           }
-           component={Tab} />
-        
-        <AppStack.Screen 
-         component={Details}
-         name="Details"
-         options={
-           {
-             title: 'Detalhes'
-           }
-         }
+        <AppStack.Screen
+          name="App"
+          options={{
+            title: '',
+          }}
+          component={Tab}
+        />
+
+        <AppStack.Screen
+          component={Details}
+          name="Details"
+          options={{
+            title: 'Detalhes',
+          }}
         />
       </AppStack.Navigator>
     </NavigationContainer>

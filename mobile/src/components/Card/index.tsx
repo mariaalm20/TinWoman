@@ -1,9 +1,8 @@
 import React, {ReactNode} from 'react';
-import {View, Text, Image} from 'react-native';
+import {Text} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import Feather from 'react-native-vector-icons/Feather';
 import {
   Container,
   Content,
@@ -19,15 +18,12 @@ import {
   ContainerGroup,
   Description,
   Separator,
-  ButtonAction,
-  ButtonLike,
-  ButtonDislike,
 } from './styles';
 
-import pessoa from '../../assets/match.png';
 import separator from '../../assets/Separator.png';
 
 import {RectButton} from 'react-native-gesture-handler';
+import pessoa from '../../assets/match.png';
 
 import {
   widthPercentageToDP as wp,
@@ -42,11 +38,11 @@ interface PropsCard {
   age: number;
   city: string;
   uf: string;
-  avatar: string;
+  avatar?: string;
   profession: string;
   description: string;
-  onPressLeft?: ReactNode,
- onPressRight?: ReactNode,
+  onPressLeft?: ReactNode;
+  onPressRight?: ReactNode;
 }
 
 const CardItem: React.FC<PropsCard> = ({
@@ -54,12 +50,9 @@ const CardItem: React.FC<PropsCard> = ({
   age,
   city,
   uf,
-  avatar,
+  //avatar,
   profession,
   description,
-  actions,
-  onPressLeft,
-  onPressRight
 }) => {
   const navigation = useNavigation();
 
@@ -71,13 +64,13 @@ const CardItem: React.FC<PropsCard> = ({
     <Container>
       <Content>
         <HeaderLinear>
-          <Text></Text>
+          <Text />
         </HeaderLinear>
 
         <ContainerInfo>
           <ContainerPicture>
             <ViewGradient>
-              <Avatar source={{uri: avatar}} />
+              <Avatar source={/*{uri: avatar}*/ pessoa} />
             </ViewGradient>
           </ContainerPicture>
 
@@ -86,27 +79,26 @@ const CardItem: React.FC<PropsCard> = ({
 
           <ContainerGroup>
             <Age>{age} /</Age>
-            <Address>{city}-{uf}</Address>
+            <Address>
+              {city}-{uf}
+            </Address>
           </ContainerGroup>
 
           <Separator source={separator} />
 
-          <Description>
-            {description}
-          </Description>
+          <Description numberOfLines={2}>{description}</Description>
 
           <RectButton onPress={handleNavigateDetails}>
             <Button
               isBackgroundLinear
               textButton="Detalhes"
               width={`${wp('35')}`}
-              height={`${hp('4')}`}
-              fontSize={15}
+              height={`${hp('6')}`}
+              fontSize={16}
             />
           </RectButton>
         </ContainerInfo>
       </Content>
-
     </Container>
   );
 };

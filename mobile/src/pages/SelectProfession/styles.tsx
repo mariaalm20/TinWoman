@@ -1,13 +1,10 @@
-import styled, {css} from 'styled-components/native';
-import Feather from 'react-native-vector-icons/Feather';
-import normalize from 'react-native-normalize';
+import styled from 'styled-components/native';
+//import Feather from 'react-native-vector-icons/Feather';
+//import normalize from 'react-native-normalize';
 import LinearGradient from 'react-native-linear-gradient';
+import {Dimensions} from 'react-native';
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import {RectButton} from 'react-native-gesture-handler';
+const {width, height} = Dimensions.get('screen');
 
 export const Container = styled.SafeAreaView`
   align-items: center;
@@ -18,8 +15,8 @@ export const Container = styled.SafeAreaView`
 
 export const ContentProfession = styled.View`
   background-color: #2f2e41;
-  width: ${wp(40)};
-  height: ${hp(20)};
+  width: ${width * 0.4};
+  height: ${height * 0.186};
   border-radius: 20;
   elevation: 10;
 `;

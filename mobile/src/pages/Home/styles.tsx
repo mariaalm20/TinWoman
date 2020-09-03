@@ -1,11 +1,7 @@
-import React from 'react';
 import styled from 'styled-components/native';
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import LinearGradient from 'react-native-linear-gradient';
+import {Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('screen');
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -15,15 +11,15 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const ImageConnection = styled.Image`
-  margin-top: ${wp('14')};
+  margin-top: ${height * 0.1};
 `;
 
 export const ButtonContainer = styled.View`
-  margin-top: ${wp('16')};
+  margin-top: ${height * 0.08};
 `;
 
 export const Button = styled.TouchableOpacity`
-  margin-top: ${wp('8')};
-  width: ${wp('80%')};
+  margin-top: ${height * 0.03};
+  width: ${width * 0.8};
   border-radius: 40px;
 `;

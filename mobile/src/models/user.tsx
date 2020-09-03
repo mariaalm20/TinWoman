@@ -7,12 +7,12 @@ export interface User {
   profession: string;
   uf: string;
   city: string;
-  avatar: string
+  avatar: string;
 }
-
 
 export interface ResponseSignInUser {
   sucess: boolean;
   message: string;
-  userExists?:User;
+  userExists?: User;
+  token: string;
 }
