@@ -33,6 +33,10 @@ const UserSchema = new Schema({
       type: String,
       required: true
     }, 
+    professionId: {
+      type: Number,
+      required: true
+    },
     uf: {
       type: String,
       required: true
@@ -67,6 +71,9 @@ interface PasswordSchema extends Document {
   name: string;
   city: string;
   uf: string;
+  profession: string;
+  age: number;
+  bio: string;
 }
 
 UserSchema.pre<PasswordSchema>('save', async function(next) {

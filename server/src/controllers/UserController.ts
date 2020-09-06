@@ -7,12 +7,19 @@ import Profession from '../model/Profession'
 class UserController{
   
     async create(req: Request, res: Response) {
-      
         const { 
           email, 
           name,
+          city,
+          uf,
+          password,
+          age,
+          bio,
           profession
          } = req.body
+
+         const { filename } = req.file
+
 
         const userExists = await User.findOne({ email: email })
         
@@ -20,25 +27,37 @@ class UserController{
             return res.status(400).send(userExists)
         } 
 
-
         const professionExists = await Profession.findOne({profession: profession})
 
         if(professionExists){
           return res.status(400).send(professionExists)
         }
 
-        const professionsId = await Profession.create({profession})
+       
+         const createProfession = await Profession.create({profession})
+
+         const _id = createProfession._id
+
+         const idProfession = await Profession.findById({_id})
     
         
-        const user = await User.create(
-          req.body,
-        )
+        const user = await User.create({
+          email, 
+          name,
+          profession,
+          city,
+          uf,
+          password,
+          age,
+          bio,
+          avatar: filename,
+          professionId: idProfession
+        })
 
      console.log(`User ${name} created`)
+
      return res.json({
        user,
-       professionsId,
-       avatar: req.file.filename,
        token: generateToken({_id: user._id})
      })
 
