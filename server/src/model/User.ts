@@ -72,6 +72,7 @@ interface PasswordSchema extends Document {
   city: string;
   uf: string;
   profession: string;
+  professionId: number;
   age: number;
   bio: string;
 }

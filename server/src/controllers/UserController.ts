@@ -65,12 +65,12 @@ class UserController{
 
      async index(req: Request, res: Response) {
        //.send({ok: true, user: req.userId})
-       const {profession} = req.query
+       const {id} = req.query
 
        const loggedUser = req.userId
 
         const users = await User.find({
-           professionId: profession,
+           professionId: id,
             $and: [
                 { _id: { $ne: loggedUser } },
                 { _id: { $nin: loggedUser?.likes } },

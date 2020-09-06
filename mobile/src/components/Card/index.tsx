@@ -2,6 +2,8 @@ import React, {ReactNode} from 'react';
 import {Text} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
+import {RectButton} from 'react-native-gesture-handler';
+import Button from '../../components/Button';
 
 import {
   Container,
@@ -22,15 +24,10 @@ import {
 
 import separator from '../../assets/Separator.png';
 
-import {RectButton} from 'react-native-gesture-handler';
-import pessoa from '../../assets/match.png';
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
-import Button from '../../components/Button';
 
 interface PropsCard {
   actions?: ReactNode;
@@ -50,7 +47,7 @@ const CardItem: React.FC<PropsCard> = ({
   age,
   city,
   uf,
-  //avatar,
+  avatar,
   profession,
   description,
 }) => {
@@ -70,7 +67,7 @@ const CardItem: React.FC<PropsCard> = ({
         <ContainerInfo>
           <ContainerPicture>
             <ViewGradient>
-              <Avatar source={/*{uri: avatar}*/ pessoa} />
+              <Avatar source={{uri: avatar}} />
             </ViewGradient>
           </ContainerPicture>
 

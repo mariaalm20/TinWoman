@@ -1,8 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {Text, ActivityIndicator} from 'react-native';
-import {useAuth} from '../../services/Auth/auth';
+//import {useAuth} from '../../services/Auth/auth';
 
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 
 import Feather from 'react-native-vector-icons/Feather';
 import {
@@ -18,7 +18,6 @@ import CardStack, {Card} from 'react-native-card-stack-swiper';
 
 import CardItem from '../../components/Card';
 
-//import datausers from '../../assets/staticUsers/user';
 import api from '../../services/api';
 
 interface PropsExplore {
@@ -34,24 +33,24 @@ interface PropsExplore {
 }
 
 export interface Profession {
-  profession: number[];
+  professionId: number[];
 }
 
 const Explore: React.FC<PropsExplore> = () => {
   const [users, setUsers] = useState<PropsExplore[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const {userLogged} = useAuth();
+  //const {userLogged} = useAuth();
   const route = useRoute();
 
   const routeParams = route.params as Profession;
-  console.log(routeParams.profession);
+  console.log(routeParams.professionId);
 
   useEffect(() => {
     async function loadUsers() {
       const response = await api.get('/user', {
         params: {
-          profession: routeParams.profession,
+          id: routeParams.professionId,
         },
       });
       console.log(response.data);
@@ -61,7 +60,7 @@ const Explore: React.FC<PropsExplore> = () => {
     }
 
     loadUsers();
-  }, [routeParams.profession]);
+  }, [routeParams.professionId]);
 
   const useSwiper = useRef(null).current;
 
@@ -81,8 +80,6 @@ const Explore: React.FC<PropsExplore> = () => {
     setUsers(rest);
   }
 
-  //const scrollX = useRef(new Animated.Value(0)).current;
-
   return (
     <Container>
       {loading ? (
@@ -100,17 +97,15 @@ const Explore: React.FC<PropsExplore> = () => {
                 onSwipedRight={handleOnSwipedLRight}>
                 {users.map((item, index) => (
                   <Card key={index}>
-                    {!!userLogged && (
-                      <CardItem
-                        //avatar={pessoa}
-                        name={item.name}
-                        city={item.city}
-                        uf={item.uf}
-                        profession={item.profession}
-                        age={item.age}
-                        description={item.bio}
-                      />
-                    )}
+                    <CardItem
+                      avatar={item.avatar}
+                      name={item.name}
+                      city={item.city}
+                      uf={item.uf}
+                      profession={item.profession}
+                      age={item.age}
+                      description={item.bio}
+                    />
                   </Card>
                 ))}
               </CardStack>

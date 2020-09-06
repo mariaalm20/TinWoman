@@ -44,3 +44,13 @@ export const HeaderLinear = styled(LinearGradient).attrs({
   border-top-left-radius: 20px;
   position: relative;
 `;
+
+export const ButtonToExplore = styled.View`
+  align-self: stretch;
+  align-items: flex-end;
+`;
+
+export const ListProfessions = styled.View`
+  align-items: center;
+  padding: 12px;
+`;
