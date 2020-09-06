@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     profession: {
       type: String,
       required: true
-    },
+    }, 
     uf: {
       type: String,
       required: true

@@ -1,24 +1,24 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {Text, ActivityIndicator} from 'react-native';
 import {useAuth} from '../../services/Auth/auth';
 
-//import {useNavigation} from '@react-navigation/native';
-//import PulseLoader from 'react-native-pulse-loader';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 import Feather from 'react-native-vector-icons/Feather';
-import {Container, ButtonAction, ButtonDislike, ButtonLike} from './styles';
+import {
+  Container,
+  ButtonAction,
+  ButtonDislike,
+  ButtonLike,
+  TextEnded,
+  ContainerEnded,
+} from './styles';
 
-//import separator from '../../assets/Separator.png';
-//import pessoa from '../../assets/pessoa.png';
-
-//import {RectButton} from 'react-native-gesture-handler';
 import CardStack, {Card} from 'react-native-card-stack-swiper';
-//import Swiper from 'react-native-deck-swiper';
 
-//import Button from '../../components/Button';
 import CardItem from '../../components/Card';
 
-import datausers from '../../assets/staticUsers/user';
+//import datausers from '../../assets/staticUsers/user';
 import api from '../../services/api';
 
 interface PropsExplore {
@@ -33,20 +33,35 @@ interface PropsExplore {
   description?: string;
 }
 
+export interface Profession {
+  profession: number[];
+}
+
 const Explore: React.FC<PropsExplore> = () => {
   const [users, setUsers] = useState<PropsExplore[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const {userLogged} = useAuth();
+  const route = useRoute();
+
+  const routeParams = route.params as Profession;
+  console.log(routeParams.profession);
 
   useEffect(() => {
     async function loadUsers() {
-      const response = await api.get('/user');
+      const response = await api.get('/user', {
+        params: {
+          profession: routeParams.profession,
+        },
+      });
       console.log(response.data);
 
       setUsers(response.data.users);
+      setLoading(false);
     }
 
     loadUsers();
-  }, []);
+  }, [routeParams.profession]);
 
   const useSwiper = useRef(null).current;
 
@@ -56,11 +71,6 @@ const Explore: React.FC<PropsExplore> = () => {
     await api.post(`/user/${user._id}/dislikes`);
 
     setUsers(rest);
-
-    //console.log(quantidadeUsers)
-    /*  const initial = quantidadeUsers - 1
-    setQuantidades(initial)
-    console.log(initial)*/
   }
 
   async function handleOnSwipedLRight() {
@@ -69,49 +79,57 @@ const Explore: React.FC<PropsExplore> = () => {
     await api.post(`/user/${user._id}/likes`);
 
     setUsers(rest);
-    // useSwiper.swipeRight()
-    /* const initial = quantidadeUsers - 1
-    setQuantidades(initial)
-    console.log(initial)*/
   }
 
   //const scrollX = useRef(new Animated.Value(0)).current;
 
   return (
     <Container>
-      <CardStack
-        verticalSwipe={false}
-        ref={useSwiper}
-        renderNoMoreCards={() => <Text>Acabu :(</Text>}
-        onSwiped={() => console.log('onSwipped')}
-        onSwipedLeft={handleOnSwipedLeft}
-        onSwipedRight={handleOnSwipedLRight}>
-        {users.map((item, index) => (
-          <Card key={index}>
-            {!!userLogged && (
-              <CardItem
-                //avatar={pessoa}
-                name={item.name}
-                city={item.city}
-                uf={item.uf}
-                profession={item.profession}
-                age={item.age}
-                description={item.bio}
-              />
-            )}
-          </Card>
-        ))}
-      </CardStack>
+      {loading ? (
+        <ActivityIndicator size="large" color="#6263FF" />
+      ) : (
+        <>
+          {users.length > 0 ? (
+            <>
+              <CardStack
+                verticalSwipe={false}
+                renderNoMoreCards={() => <Text />}
+                ref={useSwiper}
+                onSwiped={() => console.log('onSwipped')}
+                onSwipedLeft={handleOnSwipedLeft}
+                onSwipedRight={handleOnSwipedLRight}>
+                {users.map((item, index) => (
+                  <Card key={index}>
+                    {!!userLogged && (
+                      <CardItem
+                        //avatar={pessoa}
+                        name={item.name}
+                        city={item.city}
+                        uf={item.uf}
+                        profession={item.profession}
+                        age={item.age}
+                        description={item.bio}
+                      />
+                    )}
+                  </Card>
+                ))}
+              </CardStack>
 
-      {users.length > 0 && (
-        <ButtonAction>
-          <ButtonDislike onPress={handleOnSwipedLeft}>
-            <Feather name="x" size={32} color="#FF00AB" />
-          </ButtonDislike>
-          <ButtonLike onPress={handleOnSwipedLRight}>
-            <Feather name="heart" size={32} color="#6263FF" />
-          </ButtonLike>
-        </ButtonAction>
+              <ButtonAction>
+                <ButtonDislike onPress={handleOnSwipedLeft}>
+                  <Feather name="x" size={32} color="#FF00AB" />
+                </ButtonDislike>
+                <ButtonLike onPress={handleOnSwipedLRight}>
+                  <Feather name="heart" size={32} color="#6263FF" />
+                </ButtonLike>
+              </ButtonAction>
+            </>
+          ) : (
+            <ContainerEnded>
+              <TextEnded>Que pena acabou :(</TextEnded>
+            </ContainerEnded>
+          )}
+        </>
       )}
     </Container>
   );

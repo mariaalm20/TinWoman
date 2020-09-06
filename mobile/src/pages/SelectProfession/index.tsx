@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   View,
@@ -11,7 +11,10 @@ import {
 } from 'react-native';
 
 import {useAuth} from '../../services/Auth/auth';
+import {useNavigation} from '@react-navigation/native';
 import normalize from 'react-native-normalize';
+
+import Feather from 'react-native-vector-icons/Feather';
 
 import {
   Container,
@@ -24,33 +27,45 @@ import {
 import pinkSelect from '../../assets/pinkSelect.png';
 import purpleSelect from '../../assets/purpleSelect.png';
 import {RectButton} from 'react-native-gesture-handler';
+import api from '../../services/api';
+//import {User} from '../../models/user';
 
 export interface Props {
   selected: boolean;
+  profession: string;
+}
+
+export interface Profession {
+  _id: number;
+  profession: string;
 }
 
 const SelectProfession: React.FC<Props> = () => {
   // const [index, setIndex] = useState(0);
-  const [profession, setProfession] = useState([
-    {id: 0, name: 'Administração'},
-    {id: 2, name: 'Doc Hudson'},
-    {id: 3, name: 'Cruz Ramirez'},
-    {id: 4, name: 'Doc Hudson'},
-    {id: 5, name: 'Cruz Ramirez'},
-    {id: 6, name: 'Doc Hudson'},
-    {id: 7, name: 'Cruz Ramirez'},
-    {id: 8, name: 'Doc Hudson'},
-    {id: 9, name: 'Cruz Ramirez'},
-  ]);
-
+  //const [users, setUsers] = useState
+  const [loading, setLoading] = useState(true);
+  const [profession, setProfession] = useState<Profession[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const navigation = useNavigation();
 
   const {signOut, signed} = useAuth();
   console.log(signed);
 
-  async function handleSignOut() {
+  useEffect(() => {
+    async function loadProfession() {
+      const response = await api.get('/profession');
+      console.log(response.data);
+
+      setProfession(response.data);
+      setLoading(false);
+    }
+
+    loadProfession();
+  }, []);
+
+  /*async function handleSignOut() {
     signOut();
-  }
+  }*/
 
   function handleSelectItem(id: number) {
     const alreadySelected = selectedItems.findIndex((item) => item === id);
@@ -63,11 +78,20 @@ const SelectProfession: React.FC<Props> = () => {
     }
   }
 
+  function handleNavigateToExplore() {
+    navigation.navigate('Explore', {
+      selectedItems,
+    });
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       enabled>
       <Container>
+        <RectButton onPress={handleNavigateToExplore}>
+          <Feather name="arrow-right" size={60} />
+        </RectButton>
         <FlatList
           data={profession}
           keyExtractor={(item, index) => index.toString()}
@@ -81,23 +105,25 @@ const SelectProfession: React.FC<Props> = () => {
                   alignItems: 'center',
                   padding: normalize(12),
                 }}>
-                <RectButton onPress={() => handleSelectItem(item.id)}>
+                <RectButton onPress={() => handleSelectItem(item._id)}>
                   <ContentProfession
-                    key={item.id}
+                    key={item._id}
                     style={
-                      selectedItems.includes(item.id) ? styles.selectedItem : {}
+                      selectedItems.includes(item._id)
+                        ? styles.selectedItem
+                        : {}
                     }>
                     <HeaderLinear>
                       <Text />
                     </HeaderLinear>
 
                     <ContainerInfo>
-                      {item.id == 0 || item.id % 2 !== 0 ? (
+                      {item._id === 0 || item._id % 2 !== 0 ? (
                         <Image source={purpleSelect} />
                       ) : (
                         <Image source={pinkSelect} />
                       )}
-                      <NameProfession>{item.name}</NameProfession>
+                      <NameProfession>{item.profession}</NameProfession>
                     </ContainerInfo>
                   </ContentProfession>
                 </RectButton>

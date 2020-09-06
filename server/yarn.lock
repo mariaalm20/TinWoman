@@ -42,6 +42,16 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@typegoose/auto-increment@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-0.5.0.tgz#235f932e52e9ee9f547ca4687d8f72c1836c7780"
+  integrity sha512-ralkBoQ9mPSBcEikdSBUmjYENqZH7DBjS2joo7+rHgjLCBGQ8QDnirYogIggWxzisghlHfOjUzWyqIPjdfSLow==
+  dependencies:
+    "@types/lodash" "^4.14.157"
+    lodash "^4.17.19"
+    loglevel "^1.6.8"
+    tslib "^2.0.0"
+
 "@types/bcryptjs@^2.4.2":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.2.tgz#e3530eac9dd136bfdfb0e43df2c4c5ce1f77dfae"
@@ -114,6 +124,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/lodash@^4.14.157":
+  version "4.14.161"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.161.tgz#a21ca0777dabc6e4f44f3d07f37b765f54188b18"
+  integrity sha512-EP6O3Jkr7bXvZZSZYlsgt5DIjiGr0dXP1/jVEwVLTFgg0d+3lWVQkRavYVQszV7dYUwvg0B8R0MBDpcmXg7XIA==
+
 "@types/mime@*":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.3.tgz#c893b73721db73699943bfc3653b1deb7faa4a3a"
@@ -125,6 +140,26 @@
   integrity sha512-2H/Owt+pHCl9YmBOYnXc3VdnxejJEjVdH+QCWL5ZAfPehEn3evygKBX3/vKRv7aTwfNbUd0E5vjJdQklH/9a6w==
   dependencies:
     "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongoose-auto-increment@^5.0.33":
+  version "5.0.33"
+  resolved "https://registry.yarnpkg.com/@types/mongoose-auto-increment/-/mongoose-auto-increment-5.0.33.tgz#af8e6abba858a38ced76b6c9da719ae35755eebc"
+  integrity sha512-d7NKIVOUrs3fxrGc55qbIvvxg1mvm/TpCet9VCF3wlLPofznDjuM/OMga6tbo812mYYioBvLpPFN5xYgvlUB9g==
+  dependencies:
+    "@types/mongoose" "*"
+
+"@types/mongoose-sequence@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@types/mongoose-sequence/-/mongoose-sequence-3.0.4.tgz#dce94e418dc00b5854b1d23073f003d5b7942990"
+  integrity sha512-5zIwgVa6EQRBoztZs8gtnrrnquw2aI9LlatpQKAAw5qMFOD8+yUo+LkCyId5ZM3lurEKHh1pJQ7YUPfe+jTqxQ==
+
+"@types/mongoose@*":
+  version "5.7.36"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.7.36.tgz#2dae28c63041c6afba8a83ea02969f463b3f1021"
+  integrity sha512-ggFXgvkHgCNlT35B9d/heDYfSqOSwTmQjkRoR32sObGV5Xjd0N0WWuYlLzqeCg94j4hYN/OZxZ1VNNLltX/IVQ==
+  dependencies:
+    "@types/mongodb" "*"
     "@types/node" "*"
 
 "@types/mongoose@^5.7.32":
@@ -232,6 +267,13 @@ async-limiter@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
+
+async@^2.5.0:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
+  integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
+  dependencies:
+    lodash "^4.17.14"
 
 backo2@1.0.2:
   version "1.0.2"
@@ -664,6 +706,11 @@ express@^4.17.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
+extend@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
+  integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"
@@ -982,6 +1029,16 @@ lodash.once@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
 
+lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.19:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
+loglevel@^1.6.8:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.0.tgz#728166855a740d59d38db01cf46f042caa041bb0"
+  integrity sha512-i2sY04nal5jDcagM3FMfG++T69GEEM8CYuOfeOIvmXzOIcwE9a/CJPR0MFM97pYMj/u10lzz7/zd7+qwhrBTqQ==
+
 loud-rejection@^1.0.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/loud-rejection/-/loud-rejection-1.6.0.tgz#5b46f80147edee578870f086d04821cf998e551f"
@@ -1090,10 +1147,30 @@ mongodb@3.5.9:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongoose-auto-increment@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/mongoose-auto-increment/-/mongoose-auto-increment-5.0.1.tgz#827e051d9cc371dabe8bff1a704431d341cb79df"
+  integrity sha1-gn4FHZzDcdq+i/8acEQx00HLed8=
+  dependencies:
+    extend "^3.0.0"
+
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
+
+mongoose-plugin-autoinc@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/mongoose-plugin-autoinc/-/mongoose-plugin-autoinc-1.1.9.tgz#a928ad3af4bb2ea6d35d1141e61394f7af171358"
+  integrity sha512-DCkXJjgdQhMJCoRd1xwgKUQCOb/VgC8t3ewZ3+0GNCqCdYD1nxIdnvecO1IWh3ER8KINL98A0b97DgRVwOMxsg==
+
+mongoose-sequence@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/mongoose-sequence/-/mongoose-sequence-5.2.2.tgz#8b40e13a7ad0f11a9afd95ad8b12131d2ae8603d"
+  integrity sha512-gtN33C4fXVgOH8SSQvwSf8+DcFtxw1n/Wk1RHEs+W3A/cqYgLjvjMalq/0q/TDboeapNi6RBymBnyw3fDoaDlg==
+  dependencies:
+    async "^2.5.0"
+    lodash "^4.17.11"
 
 mongoose@^5.9.25:
   version "5.9.25"
@@ -1724,6 +1801,11 @@ tsconfig@^7.0.0:
     "@types/strip-json-comments" "0.0.30"
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
+
+tslib@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 type-is@^1.6.4, type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"

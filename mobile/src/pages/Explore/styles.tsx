@@ -42,3 +42,13 @@ export const ButtonDislike = styled(RectButton)`
   align-items: center;
   justify-content: center;
 `;
+
+export const ContainerEnded = styled.View`
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TextEnded = styled.Text`
+  color: #fff;
+  font-size: 20px;
+`;
