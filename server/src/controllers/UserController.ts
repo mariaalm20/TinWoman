@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 
 import generateToken from '../utils/generateToken'
 import User from '../model/User'
+import Profession from '../model/Profession'
 
 class UserController{
   
@@ -10,6 +11,7 @@ class UserController{
         const { 
           email, 
           name,
+          profession
          } = req.body
 
         const userExists = await User.findOne({ email: email })
@@ -17,15 +19,25 @@ class UserController{
         if (userExists) {
             return res.status(400).send(userExists)
         } 
+
+
+        const professionExists = await Profession.findOne({profession: profession})
+
+        if(professionExists){
+          return res.status(400).send(professionExists)
+        }
+
+        const professionsId = await Profession.create({profession})
     
         
         const user = await User.create(
           req.body,
         )
-     
+
      console.log(`User ${name} created`)
      return res.json({
        user,
+       professionsId,
        avatar: req.file.filename,
        token: generateToken({_id: user._id})
      })
@@ -34,22 +46,23 @@ class UserController{
 
      async index(req: Request, res: Response) {
        //.send({ok: true, user: req.userId})
+       const {profession} = req.query
 
-       const { email } = req.headers
-
-       const loggedDev = await User.findById(email)
+       const loggedUser = req.userId
 
         const users = await User.find({
+           professionId: profession,
             $and: [
-                { _id: { $ne: email } },
-                { _id: { $nin: loggedDev?.likes } },
-                { _id: { $nin: loggedDev?.dislikes } }
+                { _id: { $ne: loggedUser } },
+                { _id: { $nin: loggedUser?.likes } },
+                { _id: { $nin: loggedUser?.dislikes } }
             ]
         }).sort({_id: -1})
 
+
         return res.json({
           user: req.userId,
-          users
+          users,
         })
     }
 
