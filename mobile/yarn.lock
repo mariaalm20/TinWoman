@@ -5943,6 +5943,11 @@ react-native-looped-carousel@^0.1.13:
     lodash.isequal "^4.5.0"
     prop-types "^15.6.1"
 
+react-native-mail-compose@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-mail-compose/-/react-native-mail-compose-0.0.6.tgz#03716429103fbc17cf9d1b6ebe43cbb028458296"
+  integrity sha512-00vJhqanyBtiF0g8i3mKScE/EXbtlHoQO/4O+HH/ENPNlegPcM2i8KL551sQnafn4Qc31XEbIiQo6xy+f8hKYQ==
+
 react-native-normalize@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-normalize/-/react-native-normalize-1.0.1.tgz#52de71d1b86dd357c6f40fd4ab84b10336f0f072"

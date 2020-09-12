@@ -1,106 +1,99 @@
 import React from 'react';
-import {Text} from 'react-native';
 
 import {
   Container,
-  Content,
-  HeaderLinear,
-  ContainerInfo,
-  Avatar,
-  ContainerPicture,
-  ViewGradient,
-  Name,
-  Profession,
-  Address,
-  Age,
-  ContainerGroup,
-  Description,
+  ButtonLinking,
   Separator,
-  ButtonGmail,
-  ButtonLinkedIn,
-  ButtonFace,
-  ButtonInsta,
-  IconSocial,
+  ContainerGroup,
+  ButtonToExplore,
+  Content,
 } from './styles';
 
-import pessoa from '../../assets/match.png';
-
-import gmail from '../../assets/gmail.png';
-import face from '../../assets/face.png';
-import insta from '../../assets/insta.png';
-import linkedin from '../../assets/linkedIn.png';
 import separator from '../../assets/Separator.png';
 
-import Feather from 'react-native-vector-icons/Feather';
+import CardItem from '../../components/Card';
+import Button from '../../components/Button';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {RectButton} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {Linking} from 'react-native';
+
+interface PropsExplore {
+  item: {
+    _id: string;
+    name: string;
+    profession: string;
+    age: number;
+    city: string;
+    uf: string;
+    bio: string;
+    avatar: string;
+    email: string;
+  };
+}
 
 const Details = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const routeParams = route.params as PropsExplore;
+  console.log(routeParams);
 
   function handleNavigateExplore() {
     navigation.navigate('Explore');
   }
 
+  async function sendMail() {
+    Linking.openURL(`mailto:${routeParams.item.email}`);
+  }
+
   return (
     <Container>
-      <Content>
-        <HeaderLinear>
-          <Text />
-        </HeaderLinear>
-
-        <ContainerInfo>
-          <ContainerGroup>
-            <RectButton
-              onPress={handleNavigateExplore}
-              style={{marginLeft: -80, height: 30}}>
-              <Feather name="arrow-left" size={40} color="#fff" />
-            </RectButton>
-            <ContainerPicture>
-              <ViewGradient>
-                <Avatar source={pessoa} />
-              </ViewGradient>
-            </ContainerPicture>
-          </ContainerGroup>
-
-          <Name>Ana</Name>
-          <Profession>UI/UX Designer</Profession>
-
-          <ContainerGroup>
-            <Age>21 /</Age>
-            <Address>Maringá-PR</Address>
-          </ContainerGroup>
-
-          <Separator source={separator} />
-
-          <Description>
-            Apaixonada por UI/UX designer!Dê like e vamos trocar experiências
-            incríveis a fim de socializar e incluir cada vez mais mulheres na
-            nossa área!
-          </Description>
-
+      <CardItem
+        //avatar={}
+        age={routeParams.item.age}
+        city={routeParams.item.city}
+        name={routeParams.item.name}
+        profession={routeParams.item.profession}
+        uf={routeParams.item.uf}
+        description={routeParams.item.bio}>
+        <Content>
           <Separator source={separator} />
 
           <ContainerGroup>
-            <ButtonGmail onPress={() => {}}>
-              <IconSocial source={gmail} />
-            </ButtonGmail>
+            <ButtonLinking onPress={sendMail}>
+              <MaterialIcons name="gmail" size={30} color="#c4c4c4" />
+            </ButtonLinking>
 
-            <ButtonLinkedIn onPress={() => {}}>
-              <IconSocial source={linkedin} />
-            </ButtonLinkedIn>
+            <ButtonLinking onPress={() => {}}>
+              <MaterialIcons name="linkedin" size={30} color="#c4c4c4" />
+            </ButtonLinking>
 
-            <ButtonInsta onPress={() => {}}>
-              <IconSocial source={insta} />
-            </ButtonInsta>
+            <ButtonLinking onPress={() => {}}>
+              <MaterialIcons name="instagram" size={30} color="#c4c4c4" />
+            </ButtonLinking>
 
-            <ButtonFace onPress={() => {}}>
-              <IconSocial source={face} />
-            </ButtonFace>
+            <ButtonLinking onPress={() => {}}>
+              <MaterialIcons name="facebook" size={30} color="#c4c4c4" />
+            </ButtonLinking>
           </ContainerGroup>
-        </ContainerInfo>
-      </Content>
+
+          <ButtonToExplore onPress={handleNavigateExplore}>
+            <Button
+              isBackgroundLinear
+              textButton="Voltar"
+              width={`${wp('35')}`}
+              height={`${hp('6')}`}
+              fontSize={16}
+            />
+          </ButtonToExplore>
+        </Content>
+      </CardItem>
     </Container>
   );
 };

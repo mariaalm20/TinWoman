@@ -13,7 +13,7 @@ export const Container = styled.SafeAreaView`
 
 export const ButtonAction = styled.View`
   flex-direction: row;
-  margin-top: ${height * 0.52};
+  margin-top: ${height * 0.54};
   align-items: center;
   justify-content: center;
 `;

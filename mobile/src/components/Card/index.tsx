@@ -1,9 +1,10 @@
 import React, {ReactNode} from 'react';
 import {Text} from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
 import {RectButton} from 'react-native-gesture-handler';
 import Button from '../../components/Button';
+
+import pessoa from '../../assets/match.png';
 
 import {
   Container,
@@ -37,9 +38,11 @@ interface PropsCard {
   uf: string;
   avatar?: string;
   profession: string;
-  description: string;
+  description?: string;
   onPressLeft?: ReactNode;
   onPressRight?: ReactNode;
+  onPressDetail?: ReactNode;
+  isExplore?: boolean;
 }
 
 const CardItem: React.FC<PropsCard> = ({
@@ -47,16 +50,13 @@ const CardItem: React.FC<PropsCard> = ({
   age,
   city,
   uf,
-  avatar,
+  //avatar,
   profession,
   description,
+  onPressDetail,
+  children,
+  isExplore,
 }) => {
-  const navigation = useNavigation();
-
-  function handleNavigateDetails() {
-    navigation.navigate('Details');
-  }
-
   return (
     <Container>
       <Content>
@@ -67,7 +67,7 @@ const CardItem: React.FC<PropsCard> = ({
         <ContainerInfo>
           <ContainerPicture>
             <ViewGradient>
-              <Avatar source={{uri: avatar}} />
+              <Avatar source={/*{uri: avatar}*/ pessoa} />
             </ViewGradient>
           </ContainerPicture>
 
@@ -83,18 +83,24 @@ const CardItem: React.FC<PropsCard> = ({
 
           <Separator source={separator} />
 
-          <Description numberOfLines={2}>{description}</Description>
+          <Description numberOfLines={isExplore ? 2 : 10}>
+            {description}
+          </Description>
 
-          <RectButton onPress={handleNavigateDetails}>
-            <Button
-              isBackgroundLinear
-              textButton="Detalhes"
-              width={`${wp('35')}`}
-              height={`${hp('6')}`}
-              fontSize={16}
-            />
-          </RectButton>
+          {isExplore && (
+            <RectButton onPress={onPressDetail}>
+              <Button
+                isBackgroundLinear
+                textButton="Detalhes"
+                width={`${wp('35')}`}
+                height={`${hp('6')}`}
+                fontSize={16}
+              />
+            </RectButton>
+          )}
         </ContainerInfo>
+
+        {children}
       </Content>
     </Container>
   );

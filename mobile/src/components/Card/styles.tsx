@@ -12,7 +12,7 @@ export const Container = styled.SafeAreaView``;
 export const Content = styled.View`
   background-color: #2f2e41;
   border-radius: 20;
-  elevation: 10;
+  elevation: 16;
   width: ${width * 0.9};
   margin-top: 20px;
 `;
@@ -100,6 +100,7 @@ export const Description = styled.Text`
   color: #e6e6e6;
   margin-top: 20px;
   margin-bottom: 20px;
+  text-align: justify;
 `;
 
 export const ButtonAction = styled.View`

@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import {Text, ActivityIndicator} from 'react-native';
 //import {useAuth} from '../../services/Auth/auth';
 
-import {useRoute} from '@react-navigation/native';
+import {useRoute, useNavigation} from '@react-navigation/native';
 
 import Feather from 'react-native-vector-icons/Feather';
 import {
@@ -39,7 +39,7 @@ export interface Profession {
 const Explore: React.FC<PropsExplore> = () => {
   const [users, setUsers] = useState<PropsExplore[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const navigation = useNavigation();
   //const {userLogged} = useAuth();
   const route = useRoute();
 
@@ -80,6 +80,11 @@ const Explore: React.FC<PropsExplore> = () => {
     setUsers(rest);
   }
 
+  function handleNavigateDetails(item: PropsExplore) {
+    navigation.navigate('Details', {item});
+    console.log(item);
+  }
+
   return (
     <Container>
       {loading ? (
@@ -105,16 +110,18 @@ const Explore: React.FC<PropsExplore> = () => {
                       profession={item.profession}
                       age={item.age}
                       description={item.bio}
+                      onPressDetail={() => handleNavigateDetails(item)}
+                      isExplore
                     />
                   </Card>
                 ))}
               </CardStack>
 
               <ButtonAction>
-                <ButtonDislike onPress={handleOnSwipedLeft}>
+                <ButtonDislike onPress={() => handleOnSwipedLeft}>
                   <Feather name="x" size={32} color="#FF00AB" />
                 </ButtonDislike>
-                <ButtonLike onPress={handleOnSwipedLRight}>
+                <ButtonLike onPress={() => handleOnSwipedLRight}>
                   <Feather name="heart" size={32} color="#6263FF" />
                 </ButtonLike>
               </ButtonAction>

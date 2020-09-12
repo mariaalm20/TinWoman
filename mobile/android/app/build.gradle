@@ -184,6 +184,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    compile project(':react-native-mail-compose') // Add this
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
