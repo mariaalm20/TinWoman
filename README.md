@@ -3,7 +3,7 @@
     <img width="220" src="https://user-images.githubusercontent.com/50887367/88488332-f1e0af00-cf62-11ea-8216-4233521d79b1.png">
 </p>
 
-<h1 align="center">🚧  TinWoman 🚀 Em construção...  🚧</h1>
+<h1 align="center">TinWoman 🚀</h1>
 
 <div align="center">
 
