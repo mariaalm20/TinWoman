@@ -24,7 +24,7 @@
     "mongoose-plugin-autoinc": "^1.1.9",
     "mongoose-sequence": "^5.2.2",
     "multer": "^1.4.2",
-    "nodemailer": "^6.4.10",
+    "nodemailer": "^6.4.16",
     "nodemailer-express-handlebars": "^4.0.0",
     "path": "^0.12.7",
     "socket.io": "^2.3.0",
