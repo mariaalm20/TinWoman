@@ -20,7 +20,7 @@
     "axios": "^0.19.2",
     "formik": "^2.1.5",
     "react": "16.13.1",
-    "react-native": "0.63.2",
+    "react-native": "0.64.1",
     "react-native-card-stack-swiper": "^1.2.5",
     "react-native-deck-swiper": "^1.6.7",
     "react-native-easy-toast": "^1.2.0",
