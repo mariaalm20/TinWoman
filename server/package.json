@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.25",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-plugin-autoinc": "^1.1.9",
